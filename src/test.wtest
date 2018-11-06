@@ -1,0 +1,28 @@
+import example.*
+
+test "precio chica" {
+	var rem1 = new Lisa(talle=33, color=colores.gris())
+	assert.equals(80, rem1.precio())
+}
+
+test "precio grande" {
+	var rem2 = new Lisa(talle=46, color=colores.blanco())
+	assert.equals(100, rem2.precio())
+}
+
+test "precio bordada 1 color" {
+	var rem3 = new Bordada(talle=44, color=colores.blanco(), cantColores=1)
+	assert.equals(120, rem3.precio())
+}
+
+test "precio bordada 4 colores" {
+	var rem4 = new Bordada(talle=44, color=colores.blanco(), cantColores=4)
+	assert.equals(140, rem4.precio())
+}
+
+test "sublimada disney" {
+	var rem5 = new Sublimada(talle=42, color=colores.gris(), anchoSublimado=10, altoSublimado=15, duenioDibujo=empresas.disney())
+	assert.equals(275, rem5.precio())
+}
+
+
