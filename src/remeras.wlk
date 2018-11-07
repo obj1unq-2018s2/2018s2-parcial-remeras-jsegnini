@@ -75,7 +75,7 @@ class Sublimada inherits Lisa {
 			return 20
 		}
 		else {
-			return 10
+			return super()
 		}
 	}
 }
