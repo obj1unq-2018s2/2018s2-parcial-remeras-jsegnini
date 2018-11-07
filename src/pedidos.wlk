@@ -64,5 +64,4 @@ class Comercio {
 		return self.sucursalesQuePidieron().max({sucursal => self.totalPorSucursal(sucursal)})
 	}
 	
-	
 }
