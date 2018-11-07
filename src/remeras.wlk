@@ -21,6 +21,9 @@ class Remera {
 			return self.precioTalleGrande()
 		}
 	}
+	method porcentajeDescuento() {
+		return 10
+	}
 }
 
 object colores {
@@ -46,6 +49,7 @@ class Bordada inherits Lisa {
 	override method precio(){
 		return super() + (cantColores * 10).max(20)
 	}
+	override method porcentajeDescuento() {return 2}
 }
 
 class Sublimada inherits Lisa {
@@ -53,9 +57,10 @@ class Sublimada inherits Lisa {
 	var property altoSublimado
 	var property duenioDibujo //instancia de objeto empresas
 	
+	method esSublimada() {return true}
 	method precioExtra() {
 		if (duenioDibujo != null) {
-			return duenioDibujo
+			return duenioDibujo.costoDerechos()
 		}
 		else {
 			return 0
@@ -65,8 +70,17 @@ class Sublimada inherits Lisa {
 	override method precio() {
 		return super() + (anchoSublimado * altoSublimado * 0.5) + self.precioExtra()
 	}
+	override method porcentajeDescuento() {
+		if (duenioDibujo != null and duenioDibujo.tieneConvenio()){
+			return 20
+		}
+		else {
+			return 10
+		}
+	}
 }
 
-object empresas {
-	var property disney = 100
+class Empresa {
+	var property costoDerechos //precio de derechos de autor
+	var property tieneConvenio //booleano
 }

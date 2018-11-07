@@ -1,28 +1,45 @@
-import example.*
+import remeras.*
+import pedidos.*
 
-test "precio chica" {
-	var rem1 = new Lisa(talle=33, color=colores.gris())
-	assert.equals(80, rem1.precio())
-}
-
-test "precio grande" {
-	var rem2 = new Lisa(talle=46, color=colores.blanco())
-	assert.equals(100, rem2.precio())
-}
-
-test "precio bordada 1 color" {
+describe "remeras" {
 	var rem3 = new Bordada(talle=44, color=colores.blanco(), cantColores=1)
-	assert.equals(120, rem3.precio())
+	var rem6 = new Lisa(talle=42, color=colores.gris())
+	var ave = new Sucursal(minimoParaDescuento = 3)
+	var flo = new Sucursal(minimoParaDescuento = 10)
+	var disney = new Empresa(costoDerechos=100, tieneConvenio=true)
+
+	
+	test "precio chica" {
+		var rem1 = new Lisa(talle=33, color=colores.gris())
+		assert.equals(80, rem1.precio())
+	}
+	
+	test "precio grande" {
+		var rem2 = new Lisa(talle=46, color=colores.blanco())
+		assert.equals(100, rem2.precio())
+	}
+	
+	test "precio bordada 1 color" {
+		assert.equals(120, rem3.precio())
+	}
+	
+	test "precio bordada 4 colores" {
+		var rem4 = new Bordada(talle=44, color=colores.blanco(), cantColores=4)
+		assert.equals(140, rem4.precio())
+	}
+	
+	test "sublimada disney" {
+		var rem5 = new Sublimada(talle=42, color=colores.gris(), anchoSublimado=10, altoSublimado=15, duenioDibujo=disney)
+		assert.equals(275, rem5.precio())
+	}
+	
+	test "pedido en Flores" {
+		
+		var ped2 = new Pedido(sucursal=flo, cantidad=5, modeloRemera=rem6)
+		assert.equals(500, ped2.precio())
+	}
+	test "pedido en Avellaneda" {
+		var ped3 = new Pedido(sucursal=ave, cantidad=5, modeloRemera=rem6)
+		assert.equals(450, ped3.precio())
+	}
 }
-
-test "precio bordada 4 colores" {
-	var rem4 = new Bordada(talle=44, color=colores.blanco(), cantColores=4)
-	assert.equals(140, rem4.precio())
-}
-
-test "sublimada disney" {
-	var rem5 = new Sublimada(talle=42, color=colores.gris(), anchoSublimado=10, altoSublimado=15, duenioDibujo=empresas.disney())
-	assert.equals(275, rem5.precio())
-}
-
-
