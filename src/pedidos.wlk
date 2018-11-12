@@ -24,12 +24,18 @@ class Pedido {
 	}
 }
 
+// Hubiera estado piola que estuvieran los pedidos dentro de la
+// Sucursal.
 class Sucursal {
 	const property minimoParaDescuento
 }
 
+// Reiterando lo anterior, pedidos hubiese estado bueno que estuviera
+// en sucursal, aca se te facilito en algunos casos y complico en otros. 
 class Comercio {
+	
 	var property pedidos = []
+	
 	method registrarPedido(pedido){
 		pedidos.add(pedido)
 	}
@@ -42,6 +48,9 @@ class Comercio {
 	method totalPorSucursal(sucursal){
 		 return self.pedidosPorSucursal(sucursal).sum({ped => ped.precio()})
 	}
+	
+	// aca confundiste el mensaje sum con el mensaje count
+	// sum evalua numeros y count booleanos.
 	method pedidosPorColor(color){
 		return pedidos.sum({ped => ped.modeloRemera().color() == color})
 	}
@@ -52,6 +61,9 @@ class Comercio {
 	method tallesPedidos() {
 		return pedidos.map({ped => ped.talle()})
 	}
+	
+	// OJO: los rangos son objetos inmutables, osea solo tiene constantes
+	// ademas, no contiene ese metodo la calse Rango.
 	method tallesNoPedidos() {
 		var a = new Range(32, 48)
 		return a.removeAllSuchThat({num => self.tallesPedidos().contains(num)})

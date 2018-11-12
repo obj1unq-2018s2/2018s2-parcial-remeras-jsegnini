@@ -5,6 +5,9 @@ class Remera {
 	
 	method esTalleChico() {return talle >= 32 and talle <= 40 }
 	method esTalleGrande() {return talle >= 41 and talle <= 48}
+	
+	// Esto podia hacerse de una mejor manera
+	// Usando una coleccion de colores y preguntando si lo contiene.
 	method esColorBasico() {
 		return color == colores.blanco() or
 		color == colores.negro() or
@@ -26,6 +29,8 @@ class Remera {
 	}
 }
 
+// Esto esta piola, se puede mejorar, no se pedia asi pero
+// me gusta la creatividad.
 object colores {
 	method blanco() {return "blanco"}
 	method negro() {return "negro"}
@@ -80,6 +85,7 @@ class Sublimada inherits Lisa {
 	}
 }
 
+// Buena onda que hayas creado esta clase.
 class Empresa {
 	var property costoDerechos //precio de derechos de autor
 	var property tieneConvenio //booleano
